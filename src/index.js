@@ -17,7 +17,7 @@ function addUser(firstName, lastName, age) { // add user
         age,
         id: currentIdNum
     }
-    FS.writeFile('./users.json', JSON.stringify(users), 'utf8', (err) => {
+    FS.writeFile('./users.json', JSON.stringify(users), 'utf8', (err) => { // write users to json file
         if (err) {
             console.log(err);
             return;
@@ -84,6 +84,54 @@ function main() { // main function
                         }
                     });
                     return main();
+                })
+            } else if (userInput == 'edit-user') {
+                RL.question('Id: ', (id) => {
+                    RL.question(id + '> ', (userInputEditUser) => {
+                        if (userInputEditUser == 'exit') {
+                            RL.close();
+                            return 0;
+                        } else if (userInputEditUser == 'change-first-name') {
+                            RL.question('First name: ', (firstName) => {
+                                users[id].firstName = firstName;
+                                FS.writeFile('./users.json', JSON.stringify(users), 'utf8', (err) => {
+                                    if (err) {
+                                        console.log(err);
+                                        return;
+                                    }
+                                });
+                                console.log("User " + firstName + " " + users[id].lastName + " updated successfully");
+                                main()
+                            })
+                        } else if (userInputEditUser == 'change-last-name') {
+                            RL.question('Last name: ', (lastName) => {
+                                users[id].lastName = lastName;
+                                FS.writeFile('./users.json', JSON.stringify(users), 'utf8', (err) => {
+                                    if (err) {
+                                        console.log(err);
+                                        return;
+                                    }
+                                });
+                                console.log("User " + users[id].firstName + " " + lastName + " updated successfully");
+                                main()
+                            })
+                        } else if (userInputEditUser == 'change-age') {
+                            RL.question('Age: ', (age) => {
+                                users[id].age = age;
+                                FS.writeFile('./users.json', JSON.stringify(users), 'utf8', (err) => {
+                                    if (err) {
+                                        console.log(err);
+                                        return;
+                                    }
+                                });
+                                console.log("User " + users[id].firstName + " " + users[id].lastName + " updated successfully");
+                                main()
+                            })
+                        } else {
+                            console.log("Invalid command");
+                            main();
+                        }
+                    })
                 })
             } else { // if input is not valid
                 console.log("Invalid command");
