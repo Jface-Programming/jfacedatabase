@@ -20,7 +20,7 @@ function addUser(firstName, lastName, age) { // add user
     FS.writeFile('./users.json', JSON.stringify(users), 'utf8', (err) => { // write users to json file
         if (err) {
             console.log(err);
-            return;
+
         }
     });
 }
@@ -97,7 +97,7 @@ function main() { // main function
                                 FS.writeFile('./users.json', JSON.stringify(users), 'utf8', (err) => {
                                     if (err) {
                                         console.log(err);
-                                        return;
+
                                     }
                                 });
                                 console.log("User " + firstName + " " + users[id].lastName + " updated successfully");
@@ -109,19 +109,19 @@ function main() { // main function
                                 FS.writeFile('./users.json', JSON.stringify(users), 'utf8', (err) => {
                                     if (err) {
                                         console.log(err);
-                                        return;
+
                                     }
                                 });
                                 console.log("User " + users[id].firstName + " " + lastName + " updated successfully");
                                 main()
                             })
-                        } else if (userInputEditUser == 'change-age') {
+                        } else if (userInputEditUser == 'change-age') { // checking if input is change-age
                             RL.question('Age: ', (age) => {
                                 users[id].age = age;
                                 FS.writeFile('./users.json', JSON.stringify(users), 'utf8', (err) => {
                                     if (err) {
                                         console.log(err);
-                                        return;
+
                                     }
                                 });
                                 console.log("User " + users[id].firstName + " " + users[id].lastName + " updated successfully");
