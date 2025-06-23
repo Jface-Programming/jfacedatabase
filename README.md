@@ -8,7 +8,7 @@ Jface Database runs with nodejs.
 2. download the latest release of jface database and extract the zip folder
 3. run and test by runing index.js with nodejs
 4. modify jface database code and setup jface database for your server
-## list of commands
+## quick list of commands
 ### add-user: adds user
 ### list-users: lists all users
 ### find-user-id: finds user by id
